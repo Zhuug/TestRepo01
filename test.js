@@ -23,7 +23,7 @@ ShowData() {
 
 }
 
-window.onload = function() {
+window.onload = async function() {
   	const response = await fetch("./data/list-20230104.tsv");
 	const obj = await response.json();
 	console.log(obj);
