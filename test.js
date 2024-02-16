@@ -24,5 +24,7 @@ ShowData() {
 }
 
 window.onload = function() {
-  AppData.LoadDocFileFR("./data/list-20230104.tsv", AppData.ShowData)
+  	const response = await fetch("./data/list-20230104.tsv");
+	const obj = await response.json();
+	console.log(obj);
 }
