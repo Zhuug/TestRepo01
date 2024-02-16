@@ -1,12 +1,13 @@
-let AppData = {};
+let AppData = {
+	let obj = {};
 
-function loadDataFileFR(file, onload) {
+function LoadDataFileFR(file, onload) {
 	let fr = new FileReader();
 	fr.onload = function () {
 		try {
 			let obj = JSON.parse(fr.result, reviver);
 			console.log(obj);
-      AppData.obj = obj;
+      this.obj = obj;
 			onload();
 		} catch (error) {
 			console.error(error);
@@ -16,9 +17,10 @@ function loadDataFileFR(file, onload) {
 	fr.readAsText(file);
 }
 
-function AppData.ShowData() {
+function ShowData() {
+}
 }
 
 window.onload = function() {
-  loadDocFileFR("./data/list-20230104.tsv", AppData.ShowData)
+  AppData.LoadDocFileFR("./data/list-20230104.tsv", AppData.ShowData)
 }
