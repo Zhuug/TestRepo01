@@ -24,7 +24,7 @@ ShowData() {
 }
 
 window.onload = function() {
-  	const response = fetch("./data/list-20230104.tsv");
-	const obj = response.json();
-	console.log(obj);
+fetch("./data/list-20230104.tsv")
+    .then((response) => response.json())
+    .then((json) => console.log(json));
 }
