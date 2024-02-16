@@ -1,13 +1,14 @@
 let AppData = {
-	let obj = {};
 
-function LoadDataFileFR(file, onload) {
+obj: {},
+
+LoadDataFileFR(file, onload) {
 	let fr = new FileReader();
 	fr.onload = function () {
 		try {
 			let obj = JSON.parse(fr.result, reviver);
 			console.log(obj);
-      this.obj = obj;
+			this.obj = obj;
 			onload();
 		} catch (error) {
 			console.error(error);
@@ -15,10 +16,11 @@ function LoadDataFileFR(file, onload) {
 		}
 	}
 	fr.readAsText(file);
-}
+},
 
-function ShowData() {
-}
+ShowData() {
+},
+
 }
 
 window.onload = function() {
