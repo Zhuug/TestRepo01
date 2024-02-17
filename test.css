@@ -90,7 +90,7 @@ body {
 
 #characterlist-frame {
 	background-color: var(--frame-bgcolor);
-	font-size: 3rem;
+	font-size: 2rem;
 
 	display: grid;
 	grid-template-columns: 1fr auto;
