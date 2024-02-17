@@ -1,0 +1,112 @@
+body {
+	font-family: Arial;
+	font-size: .8em;
+	--frame-bgcolor: rgba(255,255,255,0.90);
+	--frame-border-color: rgba(0,0,0,1.0);
+	--frame-separator-color: rgba(0,0,0,1.0);
+	
+	--jp-table-count-width: 2.0em;
+	--jp-table-count-height: 1.25em;
+}
+
+.jp-reading {
+	font-family: serif;
+	font-style: italic;
+}
+
+#jp-table {
+	display: grid;
+	justify-items: stretch;
+	align-items: stretch;
+	border: solid 1px black;
+	width: fit-content;
+}
+
+.header-initial {
+	font-weight: bold;
+	background-color: cornflowerblue;
+	text-align: center;
+	padding: 0.5em 1em;
+}
+
+.header-final {
+	font-weight: bold;
+	background-color: indianred;
+	text-align: center;
+	padding: 0.5em 1em;
+}
+
+.jp-table-cell {
+	border: solid 1px black;
+	display: grid;
+}
+
+.jp-table-data-frame {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: auto auto;
+	grid-template-areas:
+	"jp-reading jp-reading jp-reading-count"
+	"count-grid count-grid count-grid";
+}
+
+.jp-table-reading {
+	text-align: center;
+	border-bottom: solid 1px black;
+}
+
+.jp-table-reading-count {
+	text-align: center;
+	border-bottom: solid 1px black;
+}
+
+.jp-table-count-grid {
+	display: grid;
+	grid-template-columns: 1fr [jp-tone-count-start] 1fr [jp-tone-count-end] 1fr;
+	grid-template-rows: [jp-tone-count-start] var(--jp-table-count-height) var(--jp-table-count-height);
+	grid-template-areas:
+	"jp-tone1-count jp-tone2-count jp-tone3-count"
+	"jp-tone4-count jp-tone5-count jp-tone6-count";
+	justify-items: center;
+	height: calc(2 * var(--jp-table-count-height));
+}
+
+.jp-table-tone-count {
+	text-align: center;
+	width: var(--jp-table-count-width);
+	height: var(--jp-table-count-height);
+}
+
+#characterlist-frame {
+	background-color: var(--frame-bgcolor);
+	font-size: 3em;
+
+	display: grid;
+	grid-template-columns: 1fr auto;
+
+	top: 0;
+	left: 0;
+	z-index: 1;
+	max-height: 20em;
+	border: solid 2px var(--frame-border-color);
+	border-radius: 0.25em;
+	padding: 0 0.25em;
+	overflow: auto;
+}
+.characterlist-frame-reading {
+	padding-right: 0.5em;
+}
+.characterlist-frame-reading .jp-reading {
+	font-size: 0.8em;
+}
+.characterlist-frame-charlist {
+	font-family: MingLiU_HKSCS, fangsong;
+	max-width: 20em;
+	padding: 0 0.25em;
+}
+#characterlist-frame div.characterlist-frame-charlist:not(:last-of-type) {
+	border-bottom: solid 1px var(--frame-separator-color);
+}
+.character-frame-character {
+	display: inline;
+}
