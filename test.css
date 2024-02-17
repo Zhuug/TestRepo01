@@ -1,12 +1,16 @@
 body {
-	font-family: Arial;
-	font-size: .8em;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: .8rem;
+
+	--table-border-color: rgba(0,0,0,1.0);
+	--tcell-border-color: rgba(0,0,0,1.0);
+
 	--frame-bgcolor: rgba(255,255,255,0.90);
 	--frame-border-color: rgba(0,0,0,1.0);
 	--frame-separator-color: rgba(0,0,0,1.0);
 	
-	--jp-table-count-width: 2.0em;
-	--jp-table-count-height: 1.25em;
+	--jp-table-count-width: 2.0rem;
+	--jp-table-count-height: 1.25rem;
 }
 
 .jp-reading {
@@ -18,7 +22,7 @@ body {
 	display: grid;
 	justify-items: stretch;
 	align-items: stretch;
-	border: solid 1px black;
+	border: solid 2px var(--table-border-color);
 	width: fit-content;
 }
 
@@ -26,18 +30,18 @@ body {
 	font-weight: bold;
 	background-color: cornflowerblue;
 	text-align: center;
-	padding: 0.5em 1em;
+	padding: 0.5rem 1rem;
 }
 
 .header-final {
 	font-weight: bold;
 	background-color: indianred;
 	text-align: center;
-	padding: 0.5em 1em;
+	padding: 0.5rem 1rem;
 }
 
 .jp-table-cell {
-	border: solid 1px black;
+	border: solid 1px var(--tcell-border-color);
 	display: grid;
 }
 
@@ -48,16 +52,17 @@ body {
 	grid-template-areas:
 	"jp-reading jp-reading jp-reading-count"
 	"count-grid count-grid count-grid";
+	min-width: max-content;
 }
 
 .jp-table-reading {
 	text-align: center;
-	border-bottom: solid 1px black;
+	border-bottom: solid 1px var(--tcell-border-color);
 }
 
 .jp-table-reading-count {
 	text-align: center;
-	border-bottom: solid 1px black;
+	border-bottom: solid 1px var(--tcell-border-color);
 }
 
 .jp-table-count-grid {
@@ -79,7 +84,7 @@ body {
 
 #characterlist-frame {
 	background-color: var(--frame-bgcolor);
-	font-size: 3em;
+	font-size: 3rem;
 
 	display: grid;
 	grid-template-columns: 1fr auto;
@@ -87,7 +92,7 @@ body {
 	top: 0;
 	left: 0;
 	z-index: 1;
-	max-height: 20em;
+	max-height: 20rem;
 	border: solid 2px var(--frame-border-color);
 	border-radius: 0.25em;
 	padding: 0 0.25em;
@@ -100,9 +105,9 @@ body {
 	font-size: 0.8em;
 }
 .characterlist-frame-charlist {
-	font-family: MingLiU_HKSCS, fangsong;
-	max-width: 20em;
-	padding: 0 0.25em;
+	font-family: MingLiU_HKSCS, fangsong, serif;
+	max-width: 20rem;
+	padding: 0 0.25rem;
 }
 #characterlist-frame div.characterlist-frame-charlist:not(:last-of-type) {
 	border-bottom: solid 1px var(--frame-separator-color);
