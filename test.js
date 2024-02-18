@@ -209,6 +209,9 @@ DisplayData() {
 },
 
 GetCharacterListFrame(event, initial, final) {
+	function copyChar(event) {
+		navigator.clipboard.writeText(event.target.textContent);
+	};
 	let CharacterListFrame = document.getElementById('characterlist-frame');
 	CharacterListFrame && document.getElementById('content').removeChild(CharacterListFrame);
 	CharacterListFrame && CharacterListFrame.replaceChildren();
@@ -217,9 +220,9 @@ GetCharacterListFrame(event, initial, final) {
 			CharacterListFrame = document.createElement('div');
 			CharacterListFrame.id = 'characterlist-frame';
 			// console.log(event.clientX, event.clientY);
-			CharacterListFrame.addEventListener('click', function(event) {
-				CharacterListFrame.style.setProperty('display', 'none');
-			});
+			// CharacterListFrame.addEventListener('click', function(event) {
+			// 	CharacterListFrame.style.setProperty('display', 'none');
+			// });
 		}
 		CharacterListFrame.style.setProperty('display', 'grid');
 
@@ -240,6 +243,7 @@ GetCharacterListFrame(event, initial, final) {
 				let textFrame = document.createElement('div');
 				textFrame.className = 'character-frame-character';
 				textFrame.textContent = character;
+				charFrame.addEventListener('click', copyChar);
 				charFrame.appendChild(textFrame);
 			});
 			CharacterListFrame.appendChild(charFrame);
