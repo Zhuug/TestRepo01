@@ -5,7 +5,7 @@ Data: {},
 CharacterListFrame: null,
 
 CompileData() {
-	let rawLines = TestApp.Data.payload.blob.rawLines;
+	let rawLines = TestApp.Data.json.payload.blob.rawLines;
 	let lineData = [];
 
 	let fieldNames = rawLines[0].split('\t');
@@ -23,7 +23,7 @@ CompileData() {
 		}
 	});
 	// console.log(lineData);
-	this.Data.Data = lineData;
+	this.Data.LineData = lineData;
 
 	const CharacterKey = "CH";
 	const InitialKey = "INIT";
@@ -209,6 +209,9 @@ DisplayData() {
 },
 
 GetCharacterListFrame(event, initial, final) {
+	function copyChar(event) {
+		navigator.clipboard.writeText(event.target.textContent);
+	};
 	let CharacterListFrame = document.getElementById('characterlist-frame');
 	CharacterListFrame && document.getElementById('content').removeChild(CharacterListFrame);
 	CharacterListFrame && CharacterListFrame.replaceChildren();
@@ -217,9 +220,9 @@ GetCharacterListFrame(event, initial, final) {
 			CharacterListFrame = document.createElement('div');
 			CharacterListFrame.id = 'characterlist-frame';
 			// console.log(event.clientX, event.clientY);
-			CharacterListFrame.addEventListener('click', function(event) {
-				CharacterListFrame.style.setProperty('display', 'none');
-			});
+			// CharacterListFrame.addEventListener('click', function(event) {
+			// 	CharacterListFrame.style.setProperty('display', 'none');
+			// });
 		}
 		CharacterListFrame.style.setProperty('display', 'grid');
 
@@ -240,6 +243,7 @@ GetCharacterListFrame(event, initial, final) {
 				let textFrame = document.createElement('div');
 				textFrame.className = 'character-frame-character';
 				textFrame.textContent = character;
+				charFrame.addEventListener('click', copyChar);
 				charFrame.appendChild(textFrame);
 			});
 			CharacterListFrame.appendChild(charFrame);
@@ -264,10 +268,11 @@ GetCharacterListFrame(event, initial, final) {
 		// CharacterListFrame.style.setProperty('top', top + 'px');
 
 		// absolute positioning
+		var pageWidth = Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);
 		var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
 		let left = event.pageX;
-		if (CharacterListFrame.offsetWidth + event.pageX > document.documentElement.clientWidth) {
-			left = document.documentElement.clientWidth - CharacterListFrame.offsetWidth;
+		if (CharacterListFrame.offsetWidth + event.pageX > pageWidth) {
+			left = pageWidth - CharacterListFrame.offsetWidth;
 		}
 		let top = event.pageY;
 		if (CharacterListFrame.offsetHeight + event.pageY > pageHeight) {
@@ -286,9 +291,9 @@ LoadDataFileFR(event) {
 	let fr = new FileReader();
 	fr.onload = function () {
 		try {
-			let obj = JSON.parse(fr.result, reviver);
+			const json = JSON.parse(fr.result, reviver);
 			// console.log(obj);
-			TestApp.Data = obj;
+			TestApp.Data.json = json;
 			TestApp.CompileData();
 			TestApp.DisplayData();
 		} catch (error) {
@@ -316,7 +321,7 @@ window.onload = async function() {
 		if (response && response.ok) {
 			const json = await response.json();
 			// console.log(json);
-			TestApp.Data = json;
+			TestApp.Data.json = json;
 			TestApp.CompileData();
 			TestApp.DisplayData();
 		} else {
@@ -332,9 +337,3 @@ window.onload = async function() {
 
 	}
 }
-
-// window.onload = function() {
-// 	fetch("./data/list-20230104.tsv")
-// 		.then((response) => response.json())
-// 		.then((json) => console.log(json));
-// 	}
